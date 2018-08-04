@@ -57,6 +57,14 @@ namespace WorkshopGUI
 
             InitializeComponent();
 
+            var notifyIcon = new NotifyIcon
+            {
+                Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath),
+                BalloonTipText = "Workshop uploader"
+            };
+            notifyIcon.ShowBalloonTip(3000);
+            notifyIcon.Visible = true;
+
             typeComboBox.ItemsSource = packageType;
             fileList.ItemsSource = modFiles;
 
@@ -98,7 +106,7 @@ namespace WorkshopGUI
 
         private void typeComboBox_Selected(object sender, RoutedEventArgs e)
         {
-            currentPackage.tags = new List<string> { packageType[typeComboBox.SelectedIndex] };
+            currentPackage.tags = packageType[typeComboBox.SelectedIndex];
         }
 
         private void PickPreviewPic(object sender, RoutedEventArgs e)
@@ -164,10 +172,12 @@ namespace WorkshopGUI
    
             UpdateFileList();
 
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = "Workshop.exe"; 
-            startInfo.Arguments = string.Format("Mods/{0}", currentEditFileName);
-            startInfo.WindowStyle = ProcessWindowStyle.Normal;
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "Workshop.exe",
+                Arguments = string.Format("Mods/{0}", currentEditFileName),
+                WindowStyle = ProcessWindowStyle.Normal
+            };
             Process.Start(startInfo);
         }
 
@@ -214,7 +224,7 @@ namespace WorkshopGUI
 
             contentUrlLabel.Content = package.contentUrl;
 
-            typeComboBox.SelectedIndex = packageType.IndexOf(package.tags[0]);
+            typeComboBox.SelectedIndex = packageType.IndexOf(package.tags);
         }
 
         private void OnFileSelected(object sender, MouseButtonEventArgs e)

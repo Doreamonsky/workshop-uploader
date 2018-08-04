@@ -1,0 +1,14 @@
+ManifestFileVersion: 0
+CRC: 3704871969
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 711ab230786b2789ae76310b865293a6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 31d6cfe0d16ae931b73c59d7e0c089c0
+HashAppended: 0
+ClassTypes: []
+Assets:
+- Assets/Res/Scene/PlayField/PlayField.unity
+Dependencies: []

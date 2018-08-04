@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 445394616
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f9eb707dc10701e7019a0c68d9ed6ce9
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f19fbf085e00d23fbc8d6cf7b345590b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/Vehicle/Ger/A7V_SturmpanzerWagen/A7V_SturmpanzerWagen_A7V_SturmpanzerWegen_Normal.png
+Dependencies: []

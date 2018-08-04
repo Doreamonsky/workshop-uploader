@@ -10,7 +10,7 @@ namespace Workshop
     {
         public ulong publishFileID =0;
         public string title = "null", description="null";
-        public List<string> tags =new List<string>() { "Skin"};
+        public string tags = "Skin";
         public string previewUrl="/", contentUrl="/";
     }
 }

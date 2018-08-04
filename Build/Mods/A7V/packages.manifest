@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 2541526004
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: a7v_sturmpanzerwagen_a7v_sturmpanzerwegen_albedotransparencytexture2d.vehicle
+      Dependencies: {}
+    Info_1:
+      Name: a7v_sturmpanzerwagen_a7v_sturmpanzerwegen_metallicsmoothnesstexture2d.vehicle
+      Dependencies: {}
+    Info_2:
+      Name: a7v_sturmpanzerwagen_a7v_sturmpanzerwegen_normaltexture2d.vehicle
+      Dependencies: {}

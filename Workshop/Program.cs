@@ -70,7 +70,7 @@ namespace Workshop
             SteamUGC.SetItemTitle(ugcUpdateHandle, package.title);
             SteamUGC.SetItemDescription(ugcUpdateHandle, package.description);
             SteamUGC.SetItemVisibility(ugcUpdateHandle, ERemoteStoragePublishedFileVisibility.k_ERemoteStoragePublishedFileVisibilityPrivate);
-            SteamUGC.SetItemTags(ugcUpdateHandle, package.tags);
+            SteamUGC.SetItemTags(ugcUpdateHandle,new List<string> { package.tags });
             SteamUGC.SetItemPreview(ugcUpdateHandle, Directory.GetCurrentDirectory() + "/" + package.previewUrl);
             SteamUGC.SetItemContent(ugcUpdateHandle, Directory.GetCurrentDirectory() + "/" + package.contentUrl);
 

@@ -5,11 +5,12 @@ using System.Text;
 
 namespace Workshop
 {
-    class Package
+    [Serializable]
+    public class Package
     {
-        public ulong publishFileID =0;
-        public string title = "null", description="null";
-        public List<string> tags =new List<string>();
-        public string previewUrl="/", contentUrl="/";
+        public ulong publishFileID = 0;
+        public string title = "null", description = "null";
+        public string tags = "Skin";
+        public string previewUrl = "/", contentUrl = "/";
     }
 }
