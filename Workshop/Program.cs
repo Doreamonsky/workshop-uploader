@@ -19,6 +19,7 @@ namespace Workshop
 
         protected static ulong publishID = 0;
 
+        protected static ERemoteStoragePublishedFileVisibility fileVisibility = ERemoteStoragePublishedFileVisibility.k_ERemoteStoragePublishedFileVisibilityPrivate;
 
         static void Main(string[] args)
         {
@@ -69,11 +70,12 @@ namespace Workshop
 
             SteamUGC.SetItemTitle(ugcUpdateHandle, package.title);
             SteamUGC.SetItemDescription(ugcUpdateHandle, package.description);
-            SteamUGC.SetItemVisibility(ugcUpdateHandle, ERemoteStoragePublishedFileVisibility.k_ERemoteStoragePublishedFileVisibilityPrivate);
-            SteamUGC.SetItemTags(ugcUpdateHandle,new List<string> { package.tags });
+            SteamUGC.SetItemVisibility(ugcUpdateHandle, fileVisibility);
+            SteamUGC.SetItemTags(ugcUpdateHandle,new string[] { package.tags });
             SteamUGC.SetItemPreview(ugcUpdateHandle, Directory.GetCurrentDirectory() + "/" + package.previewUrl);
             SteamUGC.SetItemContent(ugcUpdateHandle, Directory.GetCurrentDirectory() + "/" + package.contentUrl);
-
+            Console.WriteLine(string.Format("{0} {1} {2}", package.title, package.description, package.tags));
+            
             SteamAPICall_t t = SteamUGC.SubmitItemUpdate(ugcUpdateHandle, "Update file from game tool");
 
             m_itemSubmitted = CallResult<SubmitItemUpdateResult_t>.Create(OnItemSubmitted);
@@ -97,11 +99,32 @@ namespace Workshop
 
                 ProgressPrint(string.Format("status:{0} bytesDone:{1} bytesTotal:{2}", status, bytesDone, bytesTotal));
             }
+            Console.Clear();
+
             Console.WriteLine("Everything is ready !Check it on your workshop.");
 
             Console.WriteLine("Be sure to set the item public so that the community can download it!");
 
             Console.WriteLine("Press any key to quit");
+
+            if(fileVisibility == ERemoteStoragePublishedFileVisibility.k_ERemoteStoragePublishedFileVisibilityPrivate)
+            {
+                Console.WriteLine("Press anykey(exclude escape) to set your content's visibility to public instantly");
+               var key =  Console.ReadKey();
+
+               if (key.Key != ConsoleKey.Escape)
+                {
+                    fileVisibility = ERemoteStoragePublishedFileVisibility.k_ERemoteStoragePublishedFileVisibilityPublic;
+                    Console.Clear();
+                    Console.WriteLine("Preparing the content for sharing!");
+                    Main(args);
+                }
+            
+            }
+            else
+            {
+                return;
+            }
 
             Console.ReadKey();
 
@@ -110,7 +133,7 @@ namespace Workshop
 
         private static void ProgressPrint(string content)
         {
-            Console.SetCursorPosition(0, 5);
+            Console.SetCursorPosition(0, 10);
             Console.WriteLine(content);
         }
 

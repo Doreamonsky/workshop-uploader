@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop", "Workshop\Worksh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkshopGUI", "WorkshopGUI\WorkshopGUI.csproj", "{C8054DC0-4CBF-4C02-B0B3-3815D7379B16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "Installer\Installer.csproj", "{C7DED8C2-9672-4DAA-AC77-91E6766026D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C8054DC0-4CBF-4C02-B0B3-3815D7379B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8054DC0-4CBF-4C02-B0B3-3815D7379B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8054DC0-4CBF-4C02-B0B3-3815D7379B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7DED8C2-9672-4DAA-AC77-91E6766026D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7DED8C2-9672-4DAA-AC77-91E6766026D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7DED8C2-9672-4DAA-AC77-91E6766026D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7DED8C2-9672-4DAA-AC77-91E6766026D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,23 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Forms;
-using Workshop;
-using Newtonsoft.Json;
-using System.IO;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
+using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using Workshop;
 
 namespace WorkshopGUI
 {
@@ -44,7 +35,7 @@ namespace WorkshopGUI
 
         public List<string> packageType = new List<string>()
         {
-            "Skin","Map"
+            "Skin","Map","Vehicle"
         };
 
 
@@ -130,6 +121,14 @@ namespace WorkshopGUI
 
             if (done)
             {
+                var dic = new DirectoryInfo(openFolderDialog.SelectedPath);
+
+                if (dic.GetFiles("pw").Length == 0 && dic.GetFiles("cw").Length == 0)
+                {
+                    System.Windows.Forms.MessageBox.Show("Missing files. Create an empty file called 'pw' or 'cw' to indentify the games.");
+                    return;
+                }
+
                 Uri fullPath = new Uri(openFolderDialog.SelectedPath, UriKind.Absolute);
                 Uri relRoot = new Uri(System.Windows.Forms.Application.ExecutablePath, UriKind.Absolute);
 
@@ -169,7 +168,7 @@ namespace WorkshopGUI
             var json = JsonConvert.SerializeObject(currentPackage);
 
             File.WriteAllText(string.Format("Mods/{0}", currentEditFileName), json);
-   
+
             UpdateFileList();
 
             ProcessStartInfo startInfo = new ProcessStartInfo
@@ -179,6 +178,8 @@ namespace WorkshopGUI
                 WindowStyle = ProcessWindowStyle.Normal
             };
             Process.Start(startInfo);
+
+            Close();
         }
 
         private void AddModFileJson(object sender, RoutedEventArgs e)
@@ -214,7 +215,7 @@ namespace WorkshopGUI
             descriptionTextBox.Text = package.description;
             try
             {
-                previewImg.Source = new BitmapImage(new Uri(System.Windows.Forms.Application.StartupPath + "/"+package.previewUrl));
+                previewImg.Source = new BitmapImage(new Uri(System.Windows.Forms.Application.StartupPath + "/" + package.previewUrl));
             }
             catch (Exception e)
             {
@@ -238,16 +239,16 @@ namespace WorkshopGUI
             {
                 return;
             }
-        
-            var index = fileList.SelectedIndex<0|| fileList.SelectedIndex > modFiles.Count-1 ? 0 : fileList.SelectedIndex;
-        
+
+            var index = fileList.SelectedIndex < 0 || fileList.SelectedIndex > modFiles.Count - 1 ? 0 : fileList.SelectedIndex;
+
             var file = modFiles[index];
             currentEditFileName = file.FileName;
 
             var str = File.ReadAllText(file.FullName);
             var pack = JsonConvert.DeserializeObject<Package>(str);
 
-            currentEditLabel.Content = "Current Edit:"+ file.FileName;
+            currentEditLabel.Content = "Current Edit:" + file.FileName;
             UpdateUI(pack);
         }
     }
